@@ -1,0 +1,144 @@
+
+# 📘 Handy Notes on Maven
+
+## ⭐ 1. What is Maven?
+Maven is a **build automation and project management tool** for Java.  
+It helps with:
+- Building the project  
+- Managing dependencies  
+- Following a standard structure  
+- Packaging (JAR/WAR)  
+- Running tests  
+- Deployment  
+
+## ⭐ 2. Why Maven?
+- ✔ Automatically downloads jars  
+- ✔ Standard directory layout  
+- ✔ Same build on all systems  
+- ✔ Powerful plugin system  
+- ✔ Easy to build, test, package, deploy  
+
+## ⭐ 3. Maven Standard Directory Structure
+```
+project/
+ ├── src/
+ │    ├── main/
+ │    │     ├── java/
+ │    │     ├── resources/
+ │    └── test/
+ │          ├── java/
+ │          ├── resources/
+ ├── pom.xml
+```
+
+## ⭐ 4. What is `pom.xml`?
+**POM = Project Object Model**
+Defines:
+- Project details  
+- Dependencies  
+- Build plugins  
+- Repository information  
+
+### Basic Example
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>demo-project</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+## ⭐ 5. Important Maven Terminology
+| Term | Meaning |
+|------|---------|
+| GroupId | Package or organization name |
+| ArtifactId | Name of the project |
+| Version | Project version |
+| Dependencies | External libraries |
+| Plugins | Adds extra build features |
+
+## ⭐ 6. Maven Lifecycle
+### Clean Lifecycle
+- `mvn clean` → Removes `target/`
+
+### Default (Build) Lifecycle
+| Command | Action |
+|--------|--------|
+| mvn compile | Compiles source files |
+| mvn test | Runs tests |
+| mvn package | Creates JAR/WAR |
+| mvn install | Installs into local repo |
+| mvn deploy | Deploys to remote repo |
+
+### Site Lifecycle
+- `mvn site` → Generates documentation
+
+## ⭐ 7. Maven Archetypes
+Templates for creating new projects.
+```
+mvn archetype:generate -DgroupId=com.example -DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+
+## ⭐ 8. Dependency Scope
+| Scope | Used For |
+|-------|----------|
+| compile | Default; needed everywhere |
+| test | Only for tests |
+| provided | Provided by servers |
+| runtime | Needed only at runtime |
+| system | Local jars with path |
+
+## ⭐ 9. Maven Repositories
+- **Local:** `~/.m2/repository`  
+- **Central:** Maven's global repo  
+- **Remote:** Nexus / Artifactory  
+
+## ⭐ 10. Useful Maven Commands
+| Command | Purpose |
+|--------|---------|
+| mvn clean | Delete target folder |
+| mvn compile | Compile code |
+| mvn test | Run tests |
+| mvn package | Build JAR/WAR |
+| mvn install | Add to local repo |
+| mvn dependency:tree | View dependencies |
+| mvn clean install -DskipTests | Build without tests |
+
+## ⭐ 11. Common Plugins
+### Compiler Plugin
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.8.1</version>
+  <configuration>
+     <source>1.8</source>
+     <target>1.8</target>
+  </configuration>
+</plugin>
+```
+
+## ⭐ 12. Multi-Module Project
+```xml
+<modules>
+  <module>service</module>
+  <module>web</module>
+  <module>dao</module>
+</modules>
+```
+
+## 🎯 Quick Summary
+- Maven = Build + Dependency management  
+- POM = Configuration file  
+- Archetypes = Templates  
+- Commands = clean, compile, package  
+- Scopes = compile, test, provided, runtime  
